@@ -1,0 +1,26 @@
+#notification-list {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+  }
+  
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .preview-thumbnail {
+    margin-right: 10px; 
+  }
+  
+  .preview-item-content {
+    flex: 1;
+  }
+  
+  .btn {
+    margin-top: 5px;
+  }
+  

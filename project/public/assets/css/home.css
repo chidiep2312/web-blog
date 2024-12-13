@@ -1,0 +1,52 @@
+/* CSS cho các bài đăng */
+.main-panel {
+    padding: 30px;
+}
+
+.post {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.post-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Thêm style cho liên kết "Xem thêm" */
+.post-text a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.post-text a:hover {
+    text-decoration: underline;
+}
+
+/* Thiết kế responsive */
+@media (max-width: 768px) {
+    .col-md-4 {
+        width: 100%;
+    }
+}
