@@ -17,7 +17,7 @@
           <li class="nav-item">
             <a id="friend"class="nav-link" href="#">
               <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Friends</span>
+              <span class="menu-title">Follows</span>
              
             </a>
           

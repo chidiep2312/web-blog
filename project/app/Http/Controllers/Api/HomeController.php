@@ -53,8 +53,14 @@ class HomeController extends Controller
 
 public function friendList($id){
   //lay ng minh theo doi
-   $friends= Friendship::where('user_id',$id)->get();
-   return view('friends.list',compact('friends'));
+   $friends= Friendship::where(function($query) use ($id){
+   $query->where('user_id',$id)->orWhere(function($subquery)use ($id){
+    $subquery->where('friend_id',$id)->where('status','accepted');
+   });
+   })->with('user','friend')->get();
+  
+   
+   return view('friends.list',compact('friends','id'));
 }
   //bai viet cua minh
     public function myPosts($id){

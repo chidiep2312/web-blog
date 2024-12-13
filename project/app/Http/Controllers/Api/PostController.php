@@ -126,9 +126,9 @@ public function update(Request $request, $id){
         return response()->json(['success'=>true,'message'=>'You delete post successfully'],200);
      }
 
-     public function getTagPost($id)
+     public function getTagPost($id,$user)
 {
-    $posts = Post::where('tag_id', $id)->with('tag')->get();
+    $posts = Post::where('tag_id', $id)->where('user_id',$user)->with('tag')->get();
 
     if ($posts->isEmpty()) {
         return response()->json([

@@ -36,7 +36,7 @@ Route::post('/send-message/{senderId}/{receiverId}',[MessageController::class,'s
 // Tìm kiếm người dùng
 Route::get('/search-user-page/{id}/{authId}', [UserController::class, 'searchUser'])->name('search');
 //post
-Route::get('/personal-tag-post/{id}', [PostController::class, 'getTagPost']);
+Route::get('/personal-tag-post/{id}/{user}', [PostController::class, 'getTagPost']);
 // Các route khác
 Route::get('/create-post', [PostController::class, 'createPost'])->name('create-post');
 Route::get('/personal-page/{userId}', [UserController::class, 'show'])->name('personal');

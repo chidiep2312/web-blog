@@ -21,8 +21,8 @@ class UserController extends Controller
       
        return view('user.personal',compact('user','tags','newest_posts','famous_posts'));
     }
-    public function tagPosts($id){
-        $tag_posts=Post::where('tag_id',$id)->get();
+    public function tagPosts($id,$userId){
+        $tag_posts=Post::where('tag_id',$id)->where('user_id',$userId)->get();
         return response()->json(["success"=>true,"posts"=>$tag_posts]);
     }
     public function showFriendPage($authId,$id){

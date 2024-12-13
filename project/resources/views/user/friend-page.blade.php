@@ -27,7 +27,8 @@
                 <p><strong>Email:</strong>{{$user->email}}</p>
                 <p><strong>Joined date:</strong> {{$user->created_at}}</p>
                 <p><strong>Connected user:</strong>N/A</p>
-                <p><strong>Status: </strong>{{$friend->pivot->status}}</p>
+               
+</p>
             </div>
         </div>
 
@@ -103,7 +104,8 @@
   document.getElementById('tags').addEventListener('change', function (e) {
     e.preventDefault();
     const tagId = document.getElementById('tags').value;
-    fetch(`/api/personal-tag-post/${tagId}`, {
+    let id=localStorage.getItem('user_id');
+    fetch('/api/personal-tag-post/'+tagId+'/'+id, {
         headers: {
             'Content-Type': 'application/json',
         },

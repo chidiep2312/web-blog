@@ -20,6 +20,7 @@
     </div>
   
     <div class="account-details mb-4">
+        <p><strong>Id:</strong> {{$user->id}}</p>
         <p><strong>User Name:</strong> {{$user->name}}</p>
         <p><strong>Email:</strong> {{$user->email}}</p>
         <p><strong>Joined Date:</strong> {{$user->created_at}}</p>
@@ -144,7 +145,8 @@
   document.getElementById('tags').addEventListener('change', function (e) {
     e.preventDefault();
     const tagId = document.getElementById('tags').value;
-    fetch(`/api/personal-tag-post/${tagId}`, {
+    let id=localStorage.getItem('user_id');
+    fetch('/api/personal-tag-post/'+tagId+'/'+id, {
         headers: {
             'Content-Type': 'application/json',
         },

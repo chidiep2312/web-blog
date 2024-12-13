@@ -43,7 +43,7 @@
         <div class="post-comments">
             <h3>Comments</h3>
         @if($comments->isEmpty())
-        <h4>N/A</h4>
+        <h4>No comment yet!</h4>
         @else
           
             @foreach($comments as $c)
