@@ -37,10 +37,13 @@ Route::post('/send-message/{senderId}/{receiverId}',[MessageController::class,'s
 Route::get('/search-user-page/{id}/{authId}', [UserController::class, 'searchUser'])->name('search');
 //post
 Route::get('/personal-tag-post/{id}/{user}', [PostController::class, 'getTagPost']);
-// Các route khác
+//tao postpost
 Route::get('/create-post', [PostController::class, 'createPost'])->name('create-post');
+//trang ca nhan
 Route::get('/personal-page/{userId}', [UserController::class, 'show'])->name('personal');
+//trang ca nhan banban
 Route::get('/friend-page/{authUser}/{userId}', [UserController::class, 'showFriendPage'])->name('friend-page');
+//xem chi tiet postpost
 Route::get('/detail-post/{id}', [PostController::class, 'detail'])->name('post-detail');
 
 

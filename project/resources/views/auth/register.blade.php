@@ -25,7 +25,7 @@
               </div>
               <h4>New here?</h4>
               <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-              <form id ="registerFrm"class="pt-3">
+              <form id="registerFrm" class="pt-3">
                 @csrf
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Username">
@@ -34,13 +34,13 @@
                   <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="password" name="password"placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password">
                 </div>
                 <div class="mb-4">
-                  
+
                 </div>
                 <div class="mt-3">
-                 <button type="submit" class="btn btn-primary">REGISTER</button> 
+                  <button type="submit" class="btn btn-primary">REGISTER</button>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   Already have an account? <a href="{{route('login')}}" class="text-primary">Login</a>
@@ -60,35 +60,39 @@
   <script src="{{ asset('assets/js/todolist.js')}}"></script>
 
   <script>
-        document.getElementById('registerFrm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status=='success') {
-                    alert("Register successfully!");
-                    localStorage.setItem('auth_token',data.token);
-                          
-                    localStorage.setItem('user_id',data.user_id);
-                  
-                    window.location.href='/home/'+data.user_id; 
-                } else {
-                    alert("Fail!");
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        });
-    </script> 
+    document.getElementById('registerFrm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      fetch('/api/register', {
+          method: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status == 'success') {
+            alert("Register successfully!");
+            localStorage.setItem('auth_token', data.token);
+
+            localStorage.setItem('user_id', data.user_id);
+
+            window.location.href = '/home/' + data.user_id;
+          } else {
+            alert("Fail!");
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
 
 </body>
 

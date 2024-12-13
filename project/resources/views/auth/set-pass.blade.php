@@ -23,21 +23,21 @@
               <div class="brand-logo">
                 <img src="{{ asset('assets/images/blog-logo.png')}}" alt="logo">
               </div>
-              
-              <form id ="changePassFrm"class="pt-3">
+
+              <form id="changePassFrm" class="pt-3">
                 @csrf
-                
-               
+
+
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="old_password" name="old_password"placeholder="Enter old password">
+                  <input type="password" class="form-control form-control-lg" id="old_password" name="old_password" placeholder="Enter old password">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="new_password" name="new_password"placeholder="Enter new password">
+                  <input type="password" class="form-control form-control-lg" id="new_password" name="new_password" placeholder="Enter new password">
                 </div>
                 <div class="mt-3">
-                 <button type="submit"class="btn btn-primary">Change</button> 
+                  <button type="submit" class="btn btn-primary">Change</button>
                 </div>
-              
+
               </form>
             </div>
           </div>
@@ -56,29 +56,32 @@
 
 </html>
 <script>
-  document.getElementById('changePassFrm').addEventListener('submit',function(e){
+  document.getElementById('changePassFrm').addEventListener('submit', function(e) {
     e.preventDefault();
-    let id=localStorage.getItem('user_id');
-    let auth_token=localStorage.getItem('auth_token');
-    let oldp=document.getElementById('old_password').value;
-    let newp=document.getElementById('new_password').value;
-    fetch('/api/change-password/'+id,{
-      "method": 'POST',
-      "headers":{
-           'X-CSRF-TOKEN':'{{csrf_token()}}',
-          'Content-Type':'application/json',
-           'Authorization': `Bearer ${auth_token}`
-      },
-    body:JSON.stringify({old_password:oldp,new_password:newp})
-    }).then(response=>response.json())
-    .then(data=>{
-      if(data.success==true){
-        alert(data.message);
-        window.location.href='home/'+id;
-      }else{
-        alert(data.error);
-      }
-    }).catch(error => console.error('Error:', error));
+    let id = localStorage.getItem('user_id');
+    let auth_token = localStorage.getItem('auth_token');
+    let oldp = document.getElementById('old_password').value;
+    let newp = document.getElementById('new_password').value;
+    fetch('/api/change-password/' + id, {
+        "method": 'POST',
+        "headers": {
+          'X-CSRF-TOKEN': '{{csrf_token()}}',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth_token}`
+        },
+        body: JSON.stringify({
+          old_password: oldp,
+          new_password: newp
+        })
+      }).then(response => response.json())
+      .then(data => {
+        if (data.success == true) {
+          alert(data.message);
+          window.location.href = 'home/' + id;
+        } else {
+          alert(data.error);
+        }
+      }).catch(error => console.error('Error:', error));
 
   })
 </script>
