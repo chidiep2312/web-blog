@@ -65,7 +65,17 @@ class UserController extends Controller
         if ($followId == $userId) {
             return response()->json(['success' => false, 'message' => "You can not follow your sefl!"]);
         }
-        $followed = Friendship::where('user_id', $userId)->where('friend_id', $followId)->first();
+        $followed = Friendship::where(function ($query) use ($userId, $followId) {
+            $query->where(function ($subQuery) use ($userId, $followId) {
+                $subQuery->where('user_id', $userId)
+                         ->where('friend_id', $followId);
+            })
+            ->orWhere(function ($subQuery) use ($userId, $followId) {
+                $subQuery->where('user_id', $followId)
+                         ->where('friend_id', $userId);
+            });
+        })->first();
+        
         if ($followed) {
             if ($followed->status == 'pending') {
                 return response()->json(['success' => false, 'message' => "You have followed!"]);
